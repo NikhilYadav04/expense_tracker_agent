@@ -1,0 +1,40 @@
+Metadata-Version: 2.4
+Name: langchain-mcp
+Version: 0.2.1
+Summary: Model Context Protocol tool calling support for LangChain
+Project-URL: Repository, https://github.com/rectalogic/langchain-mcp
+Project-URL: Issues, https://github.com/rectalogic/langchain-mcp/issues
+Project-URL: Related, https://modelcontextprotocol.io/
+Author-email: Andrew Wason <rectalogic@rectalogic.com>
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.10
+Requires-Dist: langchain-core~=0.3.37
+Requires-Dist: mcp~=1.0
+Requires-Dist: pydantic~=2.10
+Requires-Dist: typing-extensions~=4.12
+Description-Content-Type: text/markdown
+
+# langchain-mcp
+
+![PyPI - Version](https://img.shields.io/pypi/v/langchain-mcp)
+
+[Model Context Protocol](https://modelcontextprotocol.io) tool calling support in LangChain.
+
+Create a `langchain_mcp.MCPToolkit` with an `mcp.ClientSession`,
+then `await toolkit.initialize()` and `toolkit.get_tools()` to get the list of `langchain_core.tools.BaseTool`s.
+
+Example:
+
+https://github.com/rectalogic/langchain-mcp/blob/8fa8445a24755bf91789f52718c32361ed916f46/tests/demo.py#L34-L43
+
+## Demo
+
+You can run the demo against [Groq](https://groq.com/) `llama-3.1-8b-instant`:
+```sh-session
+$ export GROQ_API_KEY=xxx
+$ uv run tests/demo.py "Read and summarize the file ./LICENSE"
+Secure MCP Filesystem Server running on stdio
+Allowed directories: [ '/users/aw/projects/rectalogic/langchain-mcp' ]
+The file ./LICENSE is a MIT License agreement. It states that the software is provided "as is" without warranty and that the authors and copyright holders are not liable for any claims, damages, or other liability arising from the software or its use.
+```
